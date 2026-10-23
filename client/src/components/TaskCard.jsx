@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -20,18 +21,23 @@ const TaskCard = ({ task, onDelete }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow duration-200">
-      <div className="flex justify-between items-start">
-        <div className="flex-1 min-w-0">
-          <h3 className="text-lg font-semibold text-gray-900 mb-2 break-words">
+    <div className="group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:border-indigo-200 hover:shadow-xl hover:shadow-indigo-100/50">
+      {/* Gradient accent */}
+      <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-indigo-500 via-violet-500 to-sky-400 opacity-70 transition-opacity duration-300 group-hover:opacity-100" />
+
+      <div className="flex items-start justify-between gap-4">
+        <div className="min-w-0 flex-1">
+          <h3 className="mb-3 break-words text-lg font-bold leading-snug text-slate-900 transition-colors duration-200 group-hover:text-indigo-700">
             {task.title}
           </h3>
-          <p className="text-gray-700 mb-3 break-words leading-relaxed">
+
+          <p className="mb-5 break-words text-sm leading-7 text-slate-600">
             {task.description}
           </p>
-          <div className="flex items-center text-sm text-gray-500">
+
+          <div className="inline-flex items-center gap-2 rounded-full border border-slate-100 bg-slate-50 px-3 py-1.5 text-xs font-medium text-slate-500 transition-colors duration-200 group-hover:border-indigo-100 group-hover:bg-indigo-50/70">
             <svg
-              className="w-4 h-4 mr-1"
+              className="h-4 w-4 text-indigo-500"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -43,19 +49,19 @@ const TaskCard = ({ task, onDelete }) => {
                 d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
               />
             </svg>
-            Created {formatDate(task.createdAt)}
+            <span>Created {formatDate(task.createdAt)}</span>
           </div>
         </div>
 
         <button
           onClick={handleDelete}
           disabled={isDeleting}
-          className="ml-4 bg-red-50 hover:bg-red-100 text-red-600 hover:text-red-700 p-2 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="shrink-0 rounded-xl border border-red-100 bg-red-50/80 p-2.5 text-red-500 shadow-sm transition-all duration-200 hover:border-red-200 hover:bg-red-500 hover:text-white hover:shadow-md hover:shadow-red-200/60 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
           title="Delete task"
         >
           {isDeleting ? (
             <svg
-              className="w-5 h-5 animate-spin"
+              className="h-5 w-5 animate-spin"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -69,7 +75,7 @@ const TaskCard = ({ task, onDelete }) => {
             </svg>
           ) : (
             <svg
-              className="w-5 h-5"
+              className="h-5 w-5"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
